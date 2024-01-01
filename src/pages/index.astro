@@ -1,0 +1,58 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Neocountdown">
+	<main>
+		<div class="timer-container" style="margin-top: auto; margin-bottom: auto; width: 100%; height: 100%;">
+			<div id="hours" class="code-font timer">00:00:00.000</div>
+		</div>
+	</main>
+
+	<script>
+		let dateStr = "January 1 2024 00:00:00 GMT-0400 (EST)";
+		// let dateStr = "December 31 2023 20:32:00 GMT-0400 (EST)"
+		let then = Number(new Date(dateStr));
+		let div = document.getElementById("hours") as HTMLElement;
+
+		let updateInterval = setInterval(function() {
+			let now = Date.now();
+			let ms = then - now;
+
+			if (ms <= 0) {
+				div.innerHTML = "00:00:00.000";
+				clearInterval(updateInterval);
+				blink();
+			} else {
+				let s = ms / 1000
+				let m = s / 60;
+				let h = m / 60;
+
+				let lll = (ms % 1000).toString().padStart(3, "0");
+				let ss = Math.ceil(s % 60).toString().padStart(2, "0");
+				let mm = Math.ceil(m % 60).toString().padStart(2, "0");
+				let hh = Math.ceil(h).toString().padStart(2, "0");
+
+				div.innerHTML = `${hh}:${mm}:${ss}.${lll}`;
+				document.title = `${hh}:${mm}:${ss}.${lll}`;
+			}
+		});
+
+		function blink() {
+			div.hidden = !div.hidden;
+			setTimeout(() => {
+				blink();
+			}, 500)
+		}
+	</script>
+</Layout>
+
+<style>
+	main {
+		margin: 0;
+		padding: 1rem;
+		width: 100%;
+		max-width: calc(100% - 2rem);
+		color: white;
+	}
+</style>
