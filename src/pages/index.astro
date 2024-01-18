@@ -13,36 +13,49 @@ import Layout from '../layouts/Layout.astro';
 
 	<script>
 		import { tsParticles } from "@tsparticles/engine";
-		import { loadFireworksPreset } from "@tsparticles/preset-fireworks";
+		import { loadConfettiPreset } from "@tsparticles/preset-confetti";
 		
 		(async () => {
-			let dateStr = "January 1 2024 00:00:00 GMT-0500 (EST)";
-			// let dateStr = "December 31 2023 21:43:00 GMT-0500 (EST)";
+			let dateStr = "February 14 2024 00:00:00 GMT-0500 (EST)";
 			let then = Number(new Date(dateStr));
 			let div = document.getElementById("hours") as HTMLElement;
+			let shouldUpdate = true;
 
-			let updateInterval = setInterval(async function() {
+			let updateInterval = async function() {
 				let now = Date.now();
 				let ms = then - now;
 
 				if (ms <= 0) {
 					div.innerHTML = "00:00:00.000";
-					clearInterval(updateInterval);
+					// clearInterval(updateInterval);
+					shouldUpdate = false;
 					blink();
 
 					setTimeout(async () => {
-						await loadFireworksPreset(tsParticles);
+						await loadConfettiPreset(tsParticles);
 
 						await tsParticles.load({
 							options: {
-								preset: "fireworks",
+								preset: "confetti",
 								particles: {
-									move: {
-										trail: {
-											enable: false
-										}
+									color: {
+										value: ["#ff0000", "#ffffff", "#f48ca4"]
 									}
-								}
+								},
+								emitters: [{
+									startCount: 100,
+									life: {
+										duration: 0,
+										count: 1
+									},
+									rate: {
+										quantity: 10
+									},
+									position: {
+										x: 50,
+										y: 0
+									}
+								}]
 							},
 							id: "tsparticles"
 						});
@@ -51,15 +64,25 @@ import Layout from '../layouts/Layout.astro';
 					let s = ms / 1000
 					let m = s / 60;
 					let h = m / 60;
+					let d = h / 24;
 
 					let lll = (ms % 1000).toString().padStart(3, "0");
 					let ss = Math.floor(s % 60).toString().padStart(2, "0");
 					let mm = Math.floor(m % 60).toString().padStart(2, "0");
-					let hh = Math.floor(h).toString().padStart(2, "0");
+					let hh = Math.floor(h % 24).toString().padStart(2, "0");
+					let dd = Math.floor(d).toString().padStart(2, "0");
 
-					div.innerHTML = `${hh}:${mm}:${ss}.${lll}`;
-					document.title = `${hh}:${mm}:${ss}.${lll}`;
+					div.innerHTML = `${dd ? `${dd}:` : ""}${hh}:${mm}:${ss}.${lll}`;
+					document.title = `${dd}:${hh}:${mm}:${ss}.${lll}`;
 				}
+
+				if (shouldUpdate) requestAnimationFrame(async () => {
+					await updateInterval();
+				});
+			}
+
+			if (shouldUpdate) requestAnimationFrame(async () => {
+				await updateInterval();
 			});
 
 			function blink() {

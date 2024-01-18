@@ -11,6 +11,9 @@ dependencies:
   '@tsparticles/engine':
     specifier: ^3.0.3
     version: 3.0.3
+  '@tsparticles/preset-confetti':
+    specifier: ^3.0.2
+    version: 3.0.2
   '@tsparticles/preset-fireworks':
     specifier: ^3.0.1
     version: 3.0.1
@@ -954,6 +957,11 @@ packages:
     requiresBuild: true
     dev: false
 
+  /@tsparticles/engine@3.1.0:
+    resolution: {integrity: sha512-sQR79T76Y+0bdwMOQgJxA5jC+Na2XGJ8wABS4NsS3oYqD/Bdh7pwHFdoMkQu86uRrsvH5jdpqlHCMmZb7laXIQ==}
+    requiresBuild: true
+    dev: false
+
   /@tsparticles/interaction-external-attract@3.0.3:
     resolution: {integrity: sha512-Fnb556N/i7wEj+ziLLkU4dOJWYm31OKyAd8CItsC9/mVtd01jCnBR57rcR3KdlKhknzDrPAWPG0CV29PdZWmXg==}
     dependencies:
@@ -1082,10 +1090,31 @@ packages:
       '@tsparticles/engine': 3.0.3
     dev: false
 
+  /@tsparticles/plugin-motion@3.1.0:
+    resolution: {integrity: sha512-7VtV19nPixoew8JY8pH2E4ABccPMrrdCpftX2H+v3YFeHnoBrVCtBPrEblMaC3VOB7NfLP4QHTLtWXAog1k6rA==}
+    dependencies:
+      '@tsparticles/engine': 3.1.0
+    dev: false
+
   /@tsparticles/plugin-sounds@3.0.3:
     resolution: {integrity: sha512-JGMdmXDAgOIN3VOTzZ8hIr1GBLgF1xWEP5dFjfw/R3xnRo3yAzSubtJIEhGjrYNJ93a8KQoalP9V+pRze7BEhg==}
     dependencies:
       '@tsparticles/engine': 3.0.3
+    dev: false
+
+  /@tsparticles/preset-confetti@3.0.2:
+    resolution: {integrity: sha512-nJ6TLQonQHT3erHd7LLA6tbybSsw+PVVe6MzNADMWyz3auctHeleA2XP+Q4uxu5ePQDtk7Q3wTmEel33nfT0Eg==}
+    dependencies:
+      '@tsparticles/basic': 3.0.3
+      '@tsparticles/engine': 3.0.3
+      '@tsparticles/plugin-emitters': 3.0.3
+      '@tsparticles/plugin-motion': 3.1.0
+      '@tsparticles/shape-square': 3.0.3
+      '@tsparticles/updater-life': 3.0.3
+      '@tsparticles/updater-roll': 3.0.3
+      '@tsparticles/updater-rotate': 3.0.3
+      '@tsparticles/updater-tilt': 3.0.3
+      '@tsparticles/updater-wobble': 3.0.3
     dev: false
 
   /@tsparticles/preset-fireworks@3.0.1:

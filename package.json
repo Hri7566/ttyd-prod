@@ -12,6 +12,7 @@
   "dependencies": {
     "@astrojs/check": "^0.3.4",
     "@tsparticles/engine": "^3.0.3",
+    "@tsparticles/preset-confetti": "^3.0.2",
     "@tsparticles/preset-fireworks": "^3.0.1",
     "astro": "^4.0.8",
     "tsparticles": "^3.0.3",
