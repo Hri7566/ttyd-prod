@@ -47,7 +47,7 @@ import Layout from '../layouts/Layout.astro';
 					div.innerHTML = "00:00:00.000";
 					const sub = document.getElementById("sub");
 
-					if (typeof sub !== "undefined") {
+					if (typeof sub !== "undefined" && sub !== null) {
 						sub.style.display = "none";
 					}
 
