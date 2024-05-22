@@ -45,7 +45,12 @@ import Layout from '../layouts/Layout.astro';
 
 				if (ms <= 0) {
 					div.innerHTML = "00:00:00.000";
-					document.getElementById("sub").style.display = "none";
+					const sub = document.getElemenyById("sub");
+
+					if (typeof sub !== "undefined") {
+						sub.style.display = "none";
+					}
+
 					// clearInterval(updateInterval);
 					shouldUpdate = false;
 					blink();
