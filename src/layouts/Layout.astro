@@ -58,11 +58,29 @@ const { title } = Astro.props;
 		font-size: 7vw;
 		text-shadow: 10px 10px 5px #202020;
 		margin: auto auto;
+		text-align: center;
 	}
 
 	.timer-container {
 		display: flex;
+		flex-wrap: wrap;
 		min-height: 100vh;
 		margin: 0;
+	}
+
+	.timer-container div {
+		flex-grow: 1;
+	}
+
+	.timer-container .break {
+		flex-basis: 100%;
+		width: 0;
+	}
+
+	#sub {
+		font-size: 1.5vw;
+		text-shadow: 10px 10px 5px #202020;
+		margin: auto auto;
+		text-align: center;
 	}
 </style>
