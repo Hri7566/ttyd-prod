@@ -34,7 +34,7 @@ import Layout from '../layouts/Layout.astro';
 
 	<script>
 		(async () => {
-			let dateStr = "Thu May 23 09:00:00 2024 -0700";
+			let dateStr = "Thu May 22 21:00:00 2024 -0700";
 			let then = Number(new Date(dateStr));
 			let div = document.getElementById("hours") as HTMLElement;
 			let shouldUpdate = true;
@@ -66,8 +66,8 @@ import Layout from '../layouts/Layout.astro';
 					let hh = Math.floor(h % 24).toString().padStart(2, "0");
 					let dd = Math.floor(d).toString().padStart(2, "0");
 
-					div.innerHTML = `${dd ? `${dd}:` : ""}${hh}:${mm}:${ss}.${lll}`;
-					document.title = `${dd}:${hh}:${mm}:${ss}.${lll}`;
+					div.innerHTML = `${dd !== "00" ? `${dd}:` : ""}${hh}:${mm}:${ss}.${lll}`;
+					document.title = div.innerHTML;
 				}
 
 				if (shouldUpdate) requestAnimationFrame(async () => {
